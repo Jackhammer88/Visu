@@ -1,0 +1,22 @@
+﻿<Window x:Class="Visu.Views.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:const="http://visu.com/const"
+        mc:Ignorable="d"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <ContentControl prism:RegionManager.RegionName="{x:Static const:RegionNames.TopRegion}"/>
+        <ContentControl Grid.Row="1" prism:RegionManager.RegionName="{x:Static const:RegionNames.CentralRegion}"/>
+        <ContentControl Grid.Row="2" prism:RegionManager.RegionName="{x:Static const:RegionNames.BottomRegion}"/>
+    </Grid>
+</Window>
