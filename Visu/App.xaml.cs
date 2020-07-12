@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using GcodeProcessorService;
 using Infrastructure;
 using Infrastructure.Abstract.Interfaces;
 using Prism.Ioc;
@@ -31,7 +32,7 @@ namespace Visu
 
         private void LoadServices(IModuleCatalog moduleCatalog)
         {
-            
+            moduleCatalog.AddModule<GcodeProcessorServiceModule>();
         }
 
         private void LoadModules(IModuleCatalog moduleCatalog)

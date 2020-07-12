@@ -3,15 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visu", "Visu\Visu.csproj", "{C65D598C-DDAC-462C-817B-773FFC094AFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visu", "Visu\Visu.csproj", "{C65D598C-DDAC-462C-817B-773FFC094AFC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C0D2FFF5-FB84-4E1D-A344-D013C898BCF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{7F79D344-754E-4963-99B8-4A8E717F2759}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Visualizer", "Modules\Visualizer\Visualizer.csproj", "{D947E2B5-B4B3-419A-BC03-DCBB7644B0A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Visualizer", "Modules\Visualizer\Visualizer.csproj", "{D947E2B5-B4B3-419A-BC03-DCBB7644B0A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3A6D54A6-F9B2-4440-A28F-944CE363679C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3A6D54A6-F9B2-4440-A28F-944CE363679C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GcodeProcessorService", "Services\GcodeProcessorService\GcodeProcessorService.csproj", "{B3524EF5-F729-40E4-8B25-1693B1A556E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GcodeParser", "Libraries\GcodeParser\GcodeParser.csproj", "{E6C5E45F-0802-4F57-A9A7-E8904E24C993}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CncMachine", "Libraries\CncMachine\CncMachine.csproj", "{4A26784D-84C0-4C93-8D55-C3A034D1D633}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNCDraw", "Libraries\CNCDraw\CNCDraw.csproj", "{BD14C107-D1A7-4915-9C28-8B1ACB5199ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyExtensions", "Libraries\MyExtensions\MyExtensions.csproj", "{45C070D6-AB2C-4B31-B856-AD811C6F9788}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexPrecompiler", "Libraries\RegexPrecompiler\RegexPrecompiler.csproj", "{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,12 +45,42 @@ Global
 		{3A6D54A6-F9B2-4440-A28F-944CE363679C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A6D54A6-F9B2-4440-A28F-944CE363679C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A6D54A6-F9B2-4440-A28F-944CE363679C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3524EF5-F729-40E4-8B25-1693B1A556E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3524EF5-F729-40E4-8B25-1693B1A556E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3524EF5-F729-40E4-8B25-1693B1A556E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3524EF5-F729-40E4-8B25-1693B1A556E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C5E45F-0802-4F57-A9A7-E8904E24C993}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C5E45F-0802-4F57-A9A7-E8904E24C993}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C5E45F-0802-4F57-A9A7-E8904E24C993}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C5E45F-0802-4F57-A9A7-E8904E24C993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A26784D-84C0-4C93-8D55-C3A034D1D633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A26784D-84C0-4C93-8D55-C3A034D1D633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A26784D-84C0-4C93-8D55-C3A034D1D633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A26784D-84C0-4C93-8D55-C3A034D1D633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD14C107-D1A7-4915-9C28-8B1ACB5199ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD14C107-D1A7-4915-9C28-8B1ACB5199ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD14C107-D1A7-4915-9C28-8B1ACB5199ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD14C107-D1A7-4915-9C28-8B1ACB5199ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D947E2B5-B4B3-419A-BC03-DCBB7644B0A7} = {C0D2FFF5-FB84-4E1D-A344-D013C898BCF6}
+		{B3524EF5-F729-40E4-8B25-1693B1A556E8} = {7F79D344-754E-4963-99B8-4A8E717F2759}
+		{E6C5E45F-0802-4F57-A9A7-E8904E24C993} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
+		{4A26784D-84C0-4C93-8D55-C3A034D1D633} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
+		{BD14C107-D1A7-4915-9C28-8B1ACB5199ED} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
+		{45C070D6-AB2C-4B31-B856-AD811C6F9788} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
+		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9CC4CFA8-2CD6-4371-9206-67B08CAFE5E2}
