@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
   </ItemGroup>
@@ -14,6 +18,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Modules\Visualizer\Visualizer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="appicon.ico" />
   </ItemGroup>
 
 </Project>

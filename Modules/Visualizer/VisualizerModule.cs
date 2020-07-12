@@ -17,6 +17,8 @@ namespace Visualizer
         {
             var regionManager = containerProvider.Resolve<IRegionManager>();
             regionManager.RegisterViewWithRegion(RegionNames.CentralRegion, typeof(Plot3d));
+            regionManager.RegisterViewWithRegion(RegionNames.TopRegion, typeof(TopMenu));
+            regionManager.RegisterViewWithRegion(RegionNames.BottomRegion, typeof(StatusBar));
         }
     }
 }

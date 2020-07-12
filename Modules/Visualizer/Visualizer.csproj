@@ -6,6 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\exit.png" />
+    <None Remove="Resources\Images\info.png" />
+    <None Remove="Resources\Images\menu.png" />
+    <None Remove="Resources\Images\open.png" />
+    <None Remove="Resources\Images\refresh.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HelixToolkit.SharpDX.Assimp" Version="2.12.0" />
     <PackageReference Include="HelixToolkit.SharpDX.Core" Version="2.12.0" />
     <PackageReference Include="HelixToolkit.SharpDX.Core.Wpf" Version="2.12.0" />
@@ -14,6 +22,29 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\VizualizerStrings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>VizualizerStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\VizualizerStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>VizualizerStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\exit.png" />
+    <Resource Include="Resources\Images\info.png" />
+    <Resource Include="Resources\Images\menu.png" />
+    <Resource Include="Resources\Images\open.png" />
+    <Resource Include="Resources\Images\refresh.png" />
   </ItemGroup>
 
 </Project>

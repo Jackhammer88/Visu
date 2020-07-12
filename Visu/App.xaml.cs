@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using Infrastructure;
+using Infrastructure.Abstract.Interfaces;
 using Prism.Ioc;
 using Prism.Modularity;
 using Visu.Views;
@@ -20,6 +16,7 @@ namespace Visu
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton<Main>();
+            containerRegistry.RegisterSingleton<IAppCommands, AppCommands>();
         }
 
         protected override Window CreateShell() => Container.Resolve<Main>();

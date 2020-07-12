@@ -7,7 +7,12 @@
         xmlns:const="http://visu.com/const"
         mc:Ignorable="d"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="450" Width="800">
+        Title="{Binding Title}" Height="900" Width="1250" WindowStartupLocation="CenterScreen" Icon="pack://application:,,,/appicon.ico">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Control" Key="O" Command="{Binding OpenAppCommand}"/>
+        <KeyBinding Modifiers="Control" Key="R" Command="{Binding RefreshAppCommand}"/>
+        <KeyBinding Modifiers="Control" Key="Q" Command="{Binding CloseAppCommand}"/>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

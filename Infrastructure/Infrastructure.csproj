@@ -6,19 +6,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Images\appicon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Page Remove="Styles\General.xaml" />
+    <Page Remove="Styles\Images.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Styles\General.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Resource>
+    <Resource Include="Styles\Images.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\Images\" />
     <Folder Include="Styles\Themes\Dark\" />
     <Folder Include="Styles\Themes\Light\" />
-    <Folder Include="Abstract\" />
   </ItemGroup>
 
   <ItemGroup>
