@@ -31,8 +31,13 @@ namespace Visualizer.ViewModels
 
         private async void OpenCommandExecute()
         {
-            var dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
+            var dialog = new OpenFileDialog
+            {
+                Multiselect = false,
+                Filter = "nc files (*.nc)|*.nc|text files (*.txt)|*.txt|cnc files (*.cnc)|*.cnc|All files (*.*)|*.*",
+                CheckFileExists = true,
+                CheckPathExists = true,
+            };
             var result = dialog.ShowDialog();
             if (result ?? false)
                 await _machineSimulator.OpenFileAsync(dialog.FileName);
