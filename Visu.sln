@@ -25,8 +25,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CNCDraw", "Libraries\CNCDra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyExtensions", "Libraries\MyExtensions\MyExtensions.csproj", "{45C070D6-AB2C-4B31-B856-AD811C6F9788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexPrecompiler", "Libraries\RegexPrecompiler\RegexPrecompiler.csproj", "{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45C070D6-AB2C-4B31-B856-AD811C6F9788}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,7 +74,6 @@ Global
 		{4A26784D-84C0-4C93-8D55-C3A034D1D633} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
 		{BD14C107-D1A7-4915-9C28-8B1ACB5199ED} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
 		{45C070D6-AB2C-4B31-B856-AD811C6F9788} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
-		{F6A33B99-5E6C-4E9A-8AC7-A843F48385B5} = {6B7496AB-6F62-4D6A-8952-4BDFAE4A18EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9CC4CFA8-2CD6-4371-9206-67B08CAFE5E2}
