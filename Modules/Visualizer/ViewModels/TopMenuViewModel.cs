@@ -37,9 +37,9 @@ namespace Visualizer.ViewModels
             if (result ?? false)
                 await _machineSimulator.OpenFileAsync(dialog.FileName);
         }
-        private void RefreshCommandExecute()
+        private async void RefreshCommandExecute()
         {
-
+            await _machineSimulator.RefreshFileAsync();
         }
         private void CloseCommandExecute()
         {

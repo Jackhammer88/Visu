@@ -59,7 +59,7 @@ namespace Visualizer.ViewModels
                     CalculateNewCoordinate(_machineSimulator.CurrentCoordinates.Y, oldCoordinates.Y, absolute),
                     CalculateNewCoordinate(_machineSimulator.CurrentCoordinates.Z, oldCoordinates.Z, absolute));
                 var radius = e.Frame.RValue;
-                ScaleCoordinates(100, ref oldCoordinates, ref newCoordinates, ref centers, ref radius);
+                ScaleCoordinates(10, ref oldCoordinates, ref newCoordinates, ref centers, ref radius);
 
                 Draw(gModalGroup1, oldCoordinates, newCoordinates, radius, centers, e);
             }

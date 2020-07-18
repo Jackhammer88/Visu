@@ -9,6 +9,7 @@ namespace Infrastructure.Abstract.Interfaces
     public interface IMachineSimulator
     {
         Task OpenFileAsync(string path);
+        Task RefreshFileAsync();
 
         IEnumerable<float> ModalGCodes { get; }
         IEnumerable<float> ModalMCodes { get; }

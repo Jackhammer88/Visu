@@ -16,6 +16,8 @@ namespace Visualizer.ViewModels
         {
             _machineSimulator = machineSimulator;
             _machineSimulator.LoadingProgressChanged += MachineSimulatorProgressChanged;
+
+            StatusBarVisibility = Visibility.Collapsed;
         }
 
         private void MachineSimulatorProgressChanged(float progress)
