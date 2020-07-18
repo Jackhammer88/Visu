@@ -1,18 +1,15 @@
 ﻿using System.Globalization;
 using System.Linq;
+using Infrastructure.Abstract.GCode;
 
 namespace CncMachine.Machines
 {
     public class MillMachine : MachineBase
     {
-        public MillMachine()
-        {
-
-        }
         protected new void Initialize()
         {
             base.Initialize();
-            CurrentCoordinates = new GcodeParser.AxisCoordinates { X = 0, Y = 0, Z = 0 };
+            CurrentCoordinates = new AxisCoordinates { X = 0, Y = 0, Z = 0 };
             OldCoordinates = CurrentCoordinates;
         }
 

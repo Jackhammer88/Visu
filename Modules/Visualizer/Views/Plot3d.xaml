@@ -10,7 +10,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <hx:Viewport3DX>
+        <hx:Viewport3DX BackgroundColor="#4c659c" UseDefaultGestures="True" IsCoordinateSystemMoverEnabled="True">
             <hx:Viewport3DX.EffectsManager>
                 <core:DefaultEffectsManager/>
             </hx:Viewport3DX.EffectsManager>
@@ -18,7 +18,10 @@
                 <hx:PerspectiveCamera/>
             </hx:Viewport3DX.Camera>
 
-
+            <hx:GroupModel3D>
+                <hx:LineGeometryModel3D Color="LawnGreen"  Geometry="{Binding LinearGeometry}"/>
+                <hx:LineGeometryModel3D Color="DarkRed" Geometry="{Binding RapidGeometry}"/>
+            </hx:GroupModel3D>
         </hx:Viewport3DX>
     </Grid>
 </UserControl>

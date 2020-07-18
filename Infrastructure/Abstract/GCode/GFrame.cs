@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace GcodeParser
+namespace Infrastructure.Abstract.GCode
 {
     public class GFrame
     {

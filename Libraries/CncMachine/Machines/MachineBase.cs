@@ -1,10 +1,12 @@
 ﻿using GcodeParser;
 using GcodeParser.GcodeInterpreter;
 using GcodeParser.GcodeInterpreter.Interpreter;
+using Infrastructure.Abstract.EventArgs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Abstract.GCode;
 
 namespace CncMachine.Machines
 {
@@ -46,7 +48,7 @@ namespace CncMachine.Machines
             CurrentMCodes.Clear();
             CurrentMCodes.UnionWith(CurrentFrame.MCodes);
             ToolNumber = CurrentFrame.ToolNumber ?? ToolNumber;
-            FrameChanged(this, new FrameChangedEventArgs(FrameNumber));
+            FrameChanged(this, new FrameChangedEventArgs(FrameNumber, CurrentFrame));
         }
 
         private void SetOldCoordinates(AxisCoordinates currentCoordinates)

@@ -9,7 +9,7 @@ namespace GcodeParser.GcodeInterpreter
 {
     public class GCodePreparer
     {
-        private readonly static string[] GCodeOrder = new string[] { "G", "R", "I", "J", "K", "T", "S", "F", "M", "A", "B", "C", "U", "V", "W", "X", "Y", "Z", "D", "E", "H", "L", "N", "O", "P", "Q" };
+        private static readonly string[] GCodeOrder = new string[] { "G", "R", "I", "J", "K", "T", "S", "F", "M", "A", "B", "C", "U", "V", "W", "X", "Y", "Z", "D", "E", "H", "L", "N", "O", "P", "Q" };
         private static readonly CNCRegex _regex = new CNCRegex();
 
         public void OpenFile(string path)
@@ -17,10 +17,16 @@ namespace GcodeParser.GcodeInterpreter
             StringsPrepared = false;
             FileName = new FileInfo(path).Name;
             Strings = new List<string>();
-            using (var file = new StreamReader(path))
+            using var file = new StreamReader(path);
+            while (!file.EndOfStream)
             {
-                Strings.AddRange(file.ReadToEnd().Split('\n').Select(s => Find(s.Trim('\r').Trim(' ').ToUpperInvariant())));
+                var line = file.ReadLine()?.Trim('\n', '\r', ' ');
+                if (string.IsNullOrEmpty(line)) continue;
+                line = Find(line);
+                Strings.Add(line);
             }
+
+            //Strings.AddRange(file.ReadToEnd().Split('\n').Select(s => Find(s.Trim('\r').Trim(' ').ToUpperInvariant())));
         }
 
         public static string Find(string line)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using Infrastructure.Abstract.GCode;
 
 namespace GcodeParser.GcodeInterpreter.Interpreter
 {

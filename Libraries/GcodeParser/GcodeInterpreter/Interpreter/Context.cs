@@ -1,4 +1,6 @@
-﻿namespace GcodeParser.GcodeInterpreter.Interpreter
+﻿using Infrastructure.Abstract.GCode;
+
+namespace GcodeParser.GcodeInterpreter.Interpreter
 {
     public class Context
     {

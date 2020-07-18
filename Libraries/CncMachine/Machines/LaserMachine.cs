@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 using System.Text;
+using Infrastructure.Abstract.GCode;
 
 namespace CncMachine.Machines
 {
@@ -9,7 +10,7 @@ namespace CncMachine.Machines
         protected new void Initialize()
         {
             base.Initialize();
-            CurrentCoordinates = new GcodeParser.AxisCoordinates { X = 0, Y = 0, Z = 0 };
+            CurrentCoordinates = new AxisCoordinates { X = 0, Y = 0, Z = 0 };
             OldCoordinates = CurrentCoordinates;
         }
 

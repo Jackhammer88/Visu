@@ -1,4 +1,4 @@
-﻿namespace GcodeParser
+﻿namespace Infrastructure.Abstract.GCode
 {
     public class AxisCoordinates
     {
