@@ -47,7 +47,7 @@ jobs:
         
       # Pack to ZIP
     - name: Packing output
-      run: Compress-Archive -Path .\build -DestinationPath setup.zip
+      run: Compress-Archive -Path .\build\ -DestinationPath setup.zip
           
     # Upload artifacts
     - name: Upload build artifacts
@@ -63,8 +63,8 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag_name: tagv1.1
-          release_name: Release v1.1 ${{ github.ref }}
+          tag_name: tagv0.1
+          release_name: alpha-Release v0.1 ${{ github.ref }}
           draft: false
           prerelease: false
           
