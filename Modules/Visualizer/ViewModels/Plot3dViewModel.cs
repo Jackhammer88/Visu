@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Windows;
 using CNCDraw.Draw;
 using GcodeParser.GcodeInterpreter.Interpreter;
 using HelixToolkit.SharpDX.Core;
@@ -12,7 +13,9 @@ using Prism.Mvvm;
 using SharpDX;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
+using Camera = HelixToolkit.Wpf.SharpDX.Camera;
 using Point3D = System.Windows.Media.Media3D.Point3D;
+using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
 
 namespace Visualizer.ViewModels
 {
@@ -21,11 +24,13 @@ namespace Visualizer.ViewModels
         private readonly IMachineSimulator _machineSimulator;
         private HelixToolkit.SharpDX.Core.Geometry3D _rapidGeometry;
         private HelixToolkit.SharpDX.Core.Geometry3D _linearGeometry;
+        private string _plotMessage;
 
         public Plot3dViewModel(IMachineSimulator machineSimulator)
         {
             _machineSimulator = machineSimulator;
-            Message = "Hello World!!!";
+
+            PlotCamera = new PerspectiveCamera();
 
             _machineSimulator.FrameChanged += MachineFrameChanged;
 
@@ -33,10 +38,12 @@ namespace Visualizer.ViewModels
             _machineSimulator.ProgramOpened += OnProgramOpened;
         }
 
-        private void OnProgramOpened()
+        private async void OnProgramOpened()
         {
             UpdateGeometry(LinearGeometry);
             UpdateGeometry(RapidGeometry);
+
+            PlotMessage = _machineSimulator.ProgramName;
         }
 
         private void ClearPlotModel()
@@ -152,6 +159,12 @@ namespace Visualizer.ViewModels
             get => _linearGeometry;
             private set => SetProperty(ref _linearGeometry, value);
         }
-        public string Message { get; }
+        public Camera PlotCamera { get; }
+
+        public string PlotMessage
+        {
+            get => _plotMessage;
+            set => SetProperty(ref _plotMessage, value);
+        }
     }
 }

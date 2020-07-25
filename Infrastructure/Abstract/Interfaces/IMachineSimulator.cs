@@ -11,6 +11,7 @@ namespace Infrastructure.Abstract.Interfaces
         Task OpenFileAsync(string path);
         Task RefreshFileAsync();
 
+        string ProgramName { get; }
         IEnumerable<float> ModalGCodes { get; }
         IEnumerable<float> ModalMCodes { get; }
         AxisCoordinates OldCoordinates { get; }

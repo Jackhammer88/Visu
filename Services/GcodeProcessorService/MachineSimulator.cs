@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CncMachine.Machines;
 using Infrastructure.Abstract.EventArgs;
 using System.Collections.Generic;
+using System.IO;
 using Infrastructure.Abstract.GCode;
 
 namespace GcodeProcessorService
@@ -52,6 +53,8 @@ namespace GcodeProcessorService
         public IEnumerable<float> ModalMCodes => Machine.ModalMCodes;
         public AxisCoordinates OldCoordinates => Machine.OldCoordinates;
         public AxisCoordinates CurrentCoordinates => Machine.CurrentCoordinates;
+
+        public string ProgramName => string.IsNullOrEmpty(_path)? string.Empty : Path.GetFileNameWithoutExtension(_path);
 
         public event Action NewFileOpened = delegate { };
         public event Action<float> LoadingProgressChanged = delegate { };

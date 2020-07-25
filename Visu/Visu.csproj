@@ -29,4 +29,16 @@
     <Resource Include="appicon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="GcodeExamples\hse1p.tap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="GcodeExamples\knight.tap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="GcodeExamples\SmilinJack - ThreeAxisFlatMachine Relief.tap">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -34,7 +34,7 @@ namespace Visualizer.ViewModels
             var dialog = new OpenFileDialog
             {
                 Multiselect = false,
-                Filter = "nc files (*.nc)|*.nc|text files (*.txt)|*.txt|cnc files (*.cnc)|*.cnc|All files (*.*)|*.*",
+                Filter = "tap files (*.tap)|*.tap|nc files (*.nc)|*.nc|text files (*.txt)|*.txt|cnc files (*.cnc)|*.cnc|All files (*.*)|*.*",
                 CheckFileExists = true,
                 CheckPathExists = true,
             };
