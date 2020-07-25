@@ -139,27 +139,14 @@ namespace CncMachine.Machines
             if (gCodes.Count > 0)
                 CurrentGCodes.UnionWith(gCodes);
         }
-        public virtual void LoadProgram(string path)
-        {
-            Program.Clear();
-            GCodePreparer preparer = new GCodePreparer();
-            preparer.OpenFile(path);
-            preparer.PrepareStrings();
 
-            InterpretProgram(preparer, new Progress<float>()).Wait();
-
-            if (Program.Count == 0) return;
-            FrameNumber = 0;
-            CurrentFrame = Program[FrameNumber];
-            InitFrame();
-        }
         public virtual async Task LoadProgramAsync(string path, IProgress<float> progressChanger)
         {
             progressChanger.Report(0);
             Program.Clear();
             progressChanger.Report(1);
             GCodePreparer preparer = new GCodePreparer();
-            await preparer.OpenFileAsync(path);
+            await preparer.OpenFileAsync(path, progressChanger);
             progressChanger.Report(5);
             await preparer.PrepareStringsAsync();
             progressChanger.Report(10);
@@ -182,12 +169,13 @@ namespace CncMachine.Machines
             await Task.Run(() =>
             {
                 float progressValue = 0;
-                for (int lineNumber = 0; lineNumber < preparer.Strings.Count; lineNumber++)
+                int lineNumber = 0;
+                foreach (var preparedString in preparer.Strings)
                 {
                     Context context = new Context
                     {
                         PreviousFrame = Program.LastOrDefault(),
-                        InputString = preparer.Strings[lineNumber]
+                        InputString = preparedString
                     };
                     gCodeExpression.Interpret(context);
                     mCodeExpression.Interpret(context);
@@ -201,8 +189,9 @@ namespace CncMachine.Machines
                         progressValue = currentValue;
                         progress.Report(progressValue);
                     }
+                    lineNumber++;
                 }
-            });
+            }).ConfigureAwait(false);
         }
         public virtual void Rewind(int lineNumber = 0)
         {

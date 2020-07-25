@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Prism.Logging;
 
 namespace GcodeParser.GcodeInterpreter
 {
@@ -11,23 +13,7 @@ namespace GcodeParser.GcodeInterpreter
     {
         private static readonly string[] GCodeOrder = new string[] { "G", "R", "I", "J", "K", "T", "S", "F", "M", "A", "B", "C", "U", "V", "W", "X", "Y", "Z", "D", "E", "H", "L", "N", "O", "P", "Q" };
         private static readonly CNCRegex _regex = new CNCRegex();
-
-        public void OpenFile(string path)
-        {
-            StringsPrepared = false;
-            FileName = new FileInfo(path).Name;
-            Strings = new List<string>();
-            using var file = new StreamReader(path);
-            while (!file.EndOfStream)
-            {
-                var line = file.ReadLine()?.Trim('\n', '\r', ' ');
-                if (string.IsNullOrEmpty(line)) continue;
-                line = Find(line);
-                Strings.Add(line);
-            }
-
-            //Strings.AddRange(file.ReadToEnd().Split('\n').Select(s => Find(s.Trim('\r').Trim(' ').ToUpperInvariant())));
-        }
+        private List<string> _strings;
 
         public static string Find(string line)
         {
@@ -39,57 +25,48 @@ namespace GcodeParser.GcodeInterpreter
             return result;
         }
 
-        public async Task OpenFileAsync(string path)
+        public async Task OpenFileAsync(string path, IProgress<float> progressChanger)
         {
             StringsPrepared = false;
             FileName = new FileInfo(path).Name;
-            Strings = new List<string>();
+            _strings = new List<string>();
             await Task.Run(async () =>
             {
-                using (var file = new StreamReader(path)) Strings.AddRange((await file.ReadToEndAsync().ConfigureAwait(false)).Split('\n').Select(s => Find(s.Trim('\r').Trim(' ').ToUpperInvariant())));
+                using var file = new StreamReader(path);
+                var wholeTextFile = await file.ReadToEndAsync().ConfigureAwait(false);
+                var withoutComments = ReplaceComments(wholeTextFile)
+                    .Split('\n').Where(s => !string.IsNullOrEmpty(s) && !s.Equals("\r"))
+                    .Select(s => Find(s.Trim('\r', ' ').ToUpperInvariant()));
+                _strings.AddRange(withoutComments);
+                file.Dispose();
             }).ConfigureAwait(false);
         }
-        public void PrepareStrings()
+
+        private string ReplaceComments(string input)
         {
-            Strings = Strings.Select(s => ExcludeComments(s))
-                .Where(s => !string.IsNullOrWhiteSpace(s))
-                    .Select(s => s.Split(' ')
-                        .Where(s1 => !string.IsNullOrWhiteSpace(s1))
-                            .OrderBy(GcodeSorter)
-                                .Aggregate((s1, s2) => $"{s1} {s2}")).ToList();
-            StringsPrepared = true;
+            if (string.IsNullOrEmpty(input)) return string.Empty;
+
+            Regex regex = new Regex(@"\(.+?\)");
+            return regex.Replace(input, string.Empty);
         }
+
         public async Task PrepareStringsAsync()
         {
-            await Task.Run(() => Strings = Strings.Select(s => ExcludeComments(s))
-                .Where(s => !string.IsNullOrWhiteSpace(s))
-                    .Select(s => s.Split(' ')
+            await Task.Run(() => _strings = Strings.Select(s => s.Split(' ')
                         .Where(s1 => !string.IsNullOrWhiteSpace(s1))
                             .OrderBy(GcodeSorter)
-                                .Aggregate((s1, s2) => $"{s1} {s2}")).ToList()).ConfigureAwait(false);
+                                .Aggregate(string.Empty, (total, n) => $"{total} {n}")).ToList()).ConfigureAwait(false);
             StringsPrepared = true;
         }
         private object GcodeSorter(string arg)
         {
-            var element = GCodeOrder.First(s => arg.Contains(s));
+            var element = GCodeOrder.First(arg.Contains);
             return Array.IndexOf(GCodeOrder, element);
         }
 
-        private static string ExcludeComments(string innerString)
-        {
-            while (innerString.Any(c => c == '('))
-            {
-                var str1 = innerString.TakeWhile(c => c != '(');
-                var str2 = innerString.SkipWhile(c => c != ')').Skip(1);
-                innerString = new string(str1.Concat(str2).ToArray());
-            }
-            return innerString;
-        }
+        public string FileName { get; private set; }
 
-        public string FileName { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "CA2227:Свойства коллекций должны быть доступны только для чтения", Justification = "<Ожидание>")]
-        public List<string> Strings { get; set; }
-        public bool StringsPrepared { get; set; }
+        public IReadOnlyCollection<string> Strings => _strings;
+        public bool StringsPrepared { get; private set; }
     }
 }
