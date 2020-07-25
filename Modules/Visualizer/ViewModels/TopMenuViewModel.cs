@@ -1,8 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 using Infrastructure.Abstract.Interfaces;
+using Infrastructure.Constants;
 using Microsoft.Win32;
 using Prism.Commands;
+using Prism.Services.Dialogs;
 
 namespace Visualizer.ViewModels
 {
@@ -10,11 +12,13 @@ namespace Visualizer.ViewModels
     {
         private readonly IAppCommands _appCommands;
         private readonly IMachineSimulator _machineSimulator;
+        private readonly IDialogService _dialogService;
 
-        public TopMenuViewModel(IAppCommands appCommands, IMachineSimulator machineSimulator)
+        public TopMenuViewModel(IAppCommands appCommands, IMachineSimulator machineSimulator, IDialogService dialogService)
         {
             _appCommands = appCommands;
             _machineSimulator = machineSimulator;
+            _dialogService = dialogService;
 
             CreateCommands();
         }
@@ -23,11 +27,13 @@ namespace Visualizer.ViewModels
         {
             OpenCommand = new DelegateCommand(OpenCommandExecute);
             RefreshCommand = new DelegateCommand(RefreshCommandExecute);
+            InfoCommand = new DelegateCommand(InfoCommandExecute);
             CloseCommand = new DelegateCommand(CloseCommandExecute);
             _appCommands.OpenApp.RegisterCommand(OpenCommand);
             _appCommands.RefreshApp.RegisterCommand(RefreshCommand);
             _appCommands.CloseApp.RegisterCommand(CloseCommand);
         }
+
 
         private async void OpenCommandExecute()
         {
@@ -46,15 +52,22 @@ namespace Visualizer.ViewModels
         {
             await _machineSimulator.RefreshFileAsync();
         }
+        private void InfoCommandExecute()
+        {
+            _dialogService.ShowDialog(DialogNames.Info, new DialogParameters(), (s) => { }) ;
+        }
+
         private void CloseCommandExecute()
         {
             Application.Current.Shutdown();
         }
 
 
-        public ICommand RefreshCommand { get; private set; }
+        public DelegateCommand RefreshCommand { get; private set; }
 
-        public ICommand OpenCommand { get; private set; }
+        public DelegateCommand OpenCommand { get; private set; }
+
+        public DelegateCommand InfoCommand { get; private set; }
 
         public DelegateCommand CloseCommand { get; private set; }
 

@@ -63,6 +63,27 @@ namespace Visualizer.Resources {
         /// <summary>
         ///   Ищет локализованную строку, похожую на About.
         /// </summary>
+        public static string InfoDialogTitle {
+            get {
+                return ResourceManager.GetString("InfoDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Visu is an open source project.
+        ///It is forbidden to use the application for commercial purposes without prior agreement with the author of the project.
+        ///We are glad to any help to the project.
+        ///Visit our project&apos;s page on.
+        /// </summary>
+        public static string InfoMessage {
+            get {
+                return ResourceManager.GetString("InfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на About.
+        /// </summary>
         public static string MenuAbout {
             get {
                 return ResourceManager.GetString("MenuAbout", resourceCulture);
@@ -70,7 +91,7 @@ namespace Visualizer.Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на .
+        ///   Ищет локализованную строку, похожую на Quit.
         /// </summary>
         public static string MenuExit {
             get {

@@ -48,7 +48,7 @@
                 <MenuItem Header="{x:Static res:VizualizerStrings.MenuExit}" Icon="{StaticResource ExitImage}" Command="{Binding CloseCommand}" InputGestureText="Ctrl+Q"/>
             </MenuItem>
             <MenuItem Header="{x:Static res:VizualizerStrings.MenuAbout}" Icon="{StaticResource MenuImage}">
-                <MenuItem Header="{x:Static res:VizualizerStrings.MenuInfo}" Icon="{StaticResource InfoImage}"/>
+                <MenuItem Header="{x:Static res:VizualizerStrings.MenuInfo}" Icon="{StaticResource InfoImage}" Command="{Binding InfoCommand}"/>
             </MenuItem>
         </Menu>
     </Grid>

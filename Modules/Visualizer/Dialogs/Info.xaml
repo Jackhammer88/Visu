@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Visualizer.Dialogs.Info"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Visualizer.Dialogs"
+             mc:Ignorable="d" 
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:res="clr-namespace:Visualizer.Resources"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="Icon" Value="pack://application:,,,/about.ico"/>
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterScreen" />
+            <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="Width" Value="400"/>
+            <Setter Property="Height" Value="250"/>
+        </Style>
+    </prism:Dialog.WindowStyle>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock TextWrapping="WrapWithOverflow" Margin="5 15 5 15" FontSize="16" FontFamily="Arial">
+            <Run Text="{x:Static res:VizualizerStrings.InfoMessage}"/>
+            <Hyperlink Command="{Binding NavigateToWebCommand}" CommandParameter="https://github.com/madfisht3/Visu">
+                <Run Text="GitHub"/>
+                <Hyperlink.ToolTip>
+                    <ToolTip Content="Go to https://github.com/madfisht3/Visu" Placement="Bottom" PlacementRectangle="40,65,0,0" HorizontalOffset="10" VerticalOffset="20"/>
+                </Hyperlink.ToolTip>
+            </Hyperlink>
+        </TextBlock>
+
+        <Button Content="{x:Static res:VizualizerStrings.MenuExit}" Command="{Binding CloseDialogCommand}" Grid.Row="1" Margin="5 5 5 8" Width="Auto"/>
+    </Grid>
+</UserControl>

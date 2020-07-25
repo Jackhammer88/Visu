@@ -38,7 +38,7 @@ namespace Visualizer.ViewModels
             _machineSimulator.ProgramOpened += OnProgramOpened;
         }
 
-        private async void OnProgramOpened()
+        private void OnProgramOpened()
         {
             UpdateGeometry(LinearGeometry);
             UpdateGeometry(RapidGeometry);

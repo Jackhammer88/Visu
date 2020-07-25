@@ -2,6 +2,8 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
+using Visualizer.Dialogs;
+using Visualizer.ViewModels;
 using Visualizer.Views;
 
 namespace Visualizer
@@ -11,6 +13,7 @@ namespace Visualizer
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.Register<Plot3d>();
+            containerRegistry.RegisterDialog<Info, InfoViewModel>();
         }
 
         public void OnInitialized(IContainerProvider containerProvider)

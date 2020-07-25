@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="about.ico" />
     <None Remove="Resources\Images\exit.png" />
     <None Remove="Resources\Images\info.png" />
     <None Remove="Resources\Images\menu.png" />
