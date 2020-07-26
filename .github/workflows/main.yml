@@ -40,10 +40,13 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
         
+    # Execute Unit Tests
+    - name: Execute Unit Tests
+      run: dotnet test
+        
     #Publish package (DOT NET CORE)
     - name: Publish
-      run: dotnet publish Visu.sln -c Release --self-contained --runtime win-x64 -o build\
-        
+      run: dotnet publish .\Visu\Visu.csproj -c Release --self-contained --runtime win-x64 -o build\
         
       # Pack to ZIP
     - name: Packing output
