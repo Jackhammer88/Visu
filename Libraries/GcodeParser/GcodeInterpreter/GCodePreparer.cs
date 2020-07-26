@@ -17,6 +17,8 @@ namespace GcodeParser.GcodeInterpreter
 
         public static string Find(string line)
         {
+            if (string.IsNullOrEmpty(line)) return string.Empty;
+
             string result = string.Empty;
             foreach (var match in _regex.Matches(line))
             {
@@ -52,7 +54,8 @@ namespace GcodeParser.GcodeInterpreter
 
         public async Task PrepareStringsAsync()
         {
-            await Task.Run(() => _strings = Strings.Select(s => s.Split(' ')
+            await Task.Run(() => _strings = Strings.Where(s => !string.IsNullOrEmpty(s))
+                    .Select(s => s.Split(' ')
                         .Where(s1 => !string.IsNullOrWhiteSpace(s1))
                             .OrderBy(GcodeSorter)
                                 .Aggregate(string.Empty, (total, n) => $"{total} {n}")).ToList()).ConfigureAwait(false);
