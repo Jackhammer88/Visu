@@ -6,9 +6,15 @@
              xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:core="clr-namespace:HelixToolkit.SharpDX.Core;assembly=HelixToolkit.SharpDX.Core"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" AllowDrop="True">
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Drop">
+            <b:InvokeCommandAction Command="{Binding OpenByDropCommand}" PassEventArgsToCommand="True"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <Grid>
         <hx:Viewport3DX Camera="{Binding PlotCamera}" Title="{Binding PlotMessage}" BackgroundColor="#4c659c"
                         TextBrush="LightGreen" UseDefaultGestures="True" IsCoordinateSystemMoverEnabled="True">

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Windows;
@@ -13,6 +14,9 @@ using Prism.Mvvm;
 using SharpDX;
 using System.Windows.Media.Media3D;
 using System.Windows.Threading;
+using HelixToolkit.Logger;
+using Prism.Commands;
+using Prism.Logging;
 using Camera = HelixToolkit.Wpf.SharpDX.Camera;
 using Point3D = System.Windows.Media.Media3D.Point3D;
 using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
@@ -22,13 +26,17 @@ namespace Visualizer.ViewModels
     public class Plot3dViewModel : BindableBase
     {
         private readonly IMachineSimulator _machineSimulator;
+        private readonly ILoggerFacade _logger;
         private HelixToolkit.SharpDX.Core.Geometry3D _rapidGeometry;
         private HelixToolkit.SharpDX.Core.Geometry3D _linearGeometry;
         private string _plotMessage;
 
-        public Plot3dViewModel(IMachineSimulator machineSimulator)
+        public Plot3dViewModel(IMachineSimulator machineSimulator, ILoggerFacade logger)
         {
+            OpenByDropCommand = new DelegateCommand<DragEventArgs>(OpenByDropCommandExecute);
+
             _machineSimulator = machineSimulator;
+            _logger = logger;
 
             PlotCamera = new PerspectiveCamera();
 
@@ -36,6 +44,24 @@ namespace Visualizer.ViewModels
 
             _machineSimulator.NewFileOpened += ClearPlotModel;
             _machineSimulator.ProgramOpened += OnProgramOpened;
+        }
+
+
+        private async void OpenByDropCommandExecute(DragEventArgs param)
+        {
+            try
+            {
+                if (param?.Data == null || !(param.Data.GetData(DataFormats.FileDrop, false) is string[] strings)) return;
+                var path = strings.FirstOrDefault();
+                if (string.IsNullOrEmpty(path) || !File.Exists(path)) return;
+
+                await _machineSimulator.OpenFileAsync(path);
+            }
+            catch (Exception ex)
+            {
+                _logger?.Log(ex.Message, Category.Exception, Priority.High);
+                throw;
+            }
         }
 
         private void OnProgramOpened()
@@ -149,6 +175,7 @@ namespace Visualizer.ViewModels
             geometry.UpdateBounds();
         }
 
+        public DelegateCommand<DragEventArgs> OpenByDropCommand { get; }
         public HelixToolkit.SharpDX.Core.Geometry3D RapidGeometry
         {
             get => _rapidGeometry;
