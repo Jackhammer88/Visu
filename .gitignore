@@ -56,6 +56,9 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 
+# artifacts folder
+visu-app/
+
 # StyleCop
 StyleCopReport.xml
 
