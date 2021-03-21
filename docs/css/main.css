@@ -1,4 +1,11 @@
 .main-background {
     background-color: #D0ECF2;
-    color: #565AA6;
+    color: rgba(255,255,255,.5);
+}
+
+.logo {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #565aa6;
+    border-radius: 30%;
 }
