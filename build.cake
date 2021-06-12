@@ -4,6 +4,7 @@ var solutionFolder = "./";
 var mainProjectPath = "./Visu/Visu.csproj";
 var outputFolder = "./visu-app/";
 
+
 Task("Clean")
     .Does(()=> {
         CleanDirectory(outputFolder);
